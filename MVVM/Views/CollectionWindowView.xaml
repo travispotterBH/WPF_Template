@@ -1,0 +1,103 @@
+﻿<Window x:Class="WPF_Template.Views.CollectionsWindowView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_Template.Views"
+        xmlns:t="clr-namespace:WPF_Template.UserControls" 
+        xmlns:viewmodels="clr-namespace:WPF_Template.ViewModels" xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase" d:DataContext="{d:DesignInstance Type=viewmodels:CollectionsWindowViewModel}"
+        mc:Ignorable="d"
+        Title="CollectionsWindowView" 
+        Height="750" 
+        Width="800"
+        WindowStartupLocation="CenterOwner" Topmost="True"
+        >
+  <Window.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+
+        <ResourceDictionary>
+          <CollectionViewSource x:Key="Employees" Source="{Binding Employees}">
+            <CollectionViewSource.SortDescriptions>
+              <scm:SortDescription PropertyName="FirstName" />
+            </CollectionViewSource.SortDescriptions>
+          </CollectionViewSource>
+        </ResourceDictionary>
+
+        <ResourceDictionary Source="../../Resources/Styles/WindowStyles.xaml"/>
+        <ResourceDictionary Source="../../Resources/Styles/ButtonStyles.xaml"/>
+        <ResourceDictionary Source="../../Resources/DataTemplates/EmployeeDataTemplate.xaml"/>
+        <ResourceDictionary Source="../../Resources/ViewTemplates/EmployeeViewTemplate.xaml"/>
+
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </Window.Resources>
+
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
+
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="*"/>
+      <ColumnDefinition Width="*"/>
+    </Grid.ColumnDefinitions>
+
+
+    <ListBox
+      Grid.Row="0"
+      Grid.Column="0"
+      Height="200"
+      Width="300"
+      ItemsSource="{Binding Employees}"
+      SelectedIndex="1"
+      ItemTemplate="{Binding Source={StaticResource EmployeeDataTemplate}}"
+      />
+
+    <ListView
+      Grid.Row="1"
+      Grid.Column="0"
+      Height="200"
+      Width="300"
+      ItemsSource="{Binding Source={StaticResource Employees}}"
+      ItemTemplate="{Binding Source={StaticResource EmployeeDataTemplate}}"
+      />
+
+    <ComboBox
+      Grid.Row="2"
+      Grid.Column="0"
+      Height="25"
+      Width="300"
+      ItemsSource="{Binding Employees}"
+      SelectedIndex="0"
+      ItemTemplate="{Binding Source={StaticResource EmployeeDataTemplate}}"
+      />
+
+    <StackPanel
+      Grid.Row="0"
+      Grid.Column="1">
+      <ListView
+        Height="200"
+        Width="300"
+        ItemsSource="{Binding Source={StaticResource Employees}}"
+        View="{Binding Source={StaticResource EmployeeViewTemplate}}"
+        />
+      <Button
+      Height="25"
+      Width="100"
+      Command="{Binding AddEmployeeCommand}" >
+        Add Employee</Button>
+    </StackPanel>
+
+    <t:StandardCloseAndOkButtons 
+      Grid.Row="2"
+      Grid.Column="1"
+      HorizontalAlignment="Right"
+      Ok="{Binding OkCommand}"
+      Cancel="{Binding CancelCommand}"
+      />
+
+  </Grid>
+</Window>

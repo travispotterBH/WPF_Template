@@ -1,0 +1,139 @@
+﻿<Window x:Class="WPF_Template.MainWindowView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_Template"
+        xmlns:t="clr-namespace:WPF_Template.UserControls" 
+        xmlns:viewmodels="clr-namespace:WPF_Template.ViewModels" 
+        d:DataContext="{d:DesignInstance Type=viewmodels:MainWindowViewModel}"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800"
+        >
+  <Window.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="../../Resources/Styles/WindowStyles.xaml"/>
+        <ResourceDictionary Source="../../Resources/Styles/ButtonStyles.xaml"/>
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </Window.Resources>
+
+  <Window.Style>
+    <StaticResource ResourceKey="WindowStyle" />
+  </Window.Style>
+
+
+  <Grid>
+    <!---Defining Grid Layout-->
+    <Grid.RowDefinitions>
+      <RowDefinition/>
+      <RowDefinition Height="25"/>
+    </Grid.RowDefinitions>
+
+    <StackPanel>
+
+      <DockPanel>
+        <TextBlock
+          VerticalAlignment="Center"
+          >Nested Window</TextBlock>
+
+        <Button
+          HorizontalAlignment="Right"
+          Height="20"
+          Width="100"
+          Command="{Binding NestedWindowCommand}"
+          >
+          Open
+        </Button>
+
+      </DockPanel>
+      <DockPanel>
+        <TextBlock
+          VerticalAlignment="Center"
+          >Pop Alert</TextBlock>
+
+        <Button
+          HorizontalAlignment="Right"
+          Height="20"
+          Width="100"
+          Command="{Binding PopUpWindowCommand}"
+          >
+          Open
+        </Button>
+
+      </DockPanel>
+
+      <DockPanel>
+        <TextBlock
+        VerticalAlignment="Center"
+        >Custom UserControl
+        </TextBlock>
+
+        <t:StandardImportAndExportButtons
+          HorizontalAlignment="Right"
+          Import="{Binding ImportCommand}"
+          Export="{Binding ExportCommand}"
+        />
+
+      </DockPanel>
+
+
+      <StackPanel
+        Orientation="Horizontal"
+        HorizontalAlignment="Stretch"
+        >
+        <TextBlock
+          VerticalAlignment="Center"
+          >File Dialogs</TextBlock>
+
+        <Button
+          HorizontalAlignment="Right"
+          Height="20"
+          Width="100"
+          Command="{Binding OpenFileCommand}"
+          >
+          Open
+        </Button>
+
+        <Button
+          HorizontalAlignment="Right"
+          Height="20"
+          Width="100"
+          Command="{Binding SaveFileCommand}"
+          >
+          Save
+        </Button>
+      </StackPanel>
+
+      <DockPanel>
+        <TextBlock
+          VerticalAlignment="Center"
+          >Collections Window</TextBlock>
+
+        <Button
+          HorizontalAlignment="Right"
+          Height="20"
+          Width="100"
+          Command="{Binding CollectionsWindowCommand}"
+          >
+          Open
+        </Button>
+
+      </DockPanel>
+    </StackPanel>
+    <DockPanel
+       Grid.Column="0" 
+       Grid.ColumnSpan="2"
+       Grid.Row="1"
+      >
+
+      <t:StandardCloseAndOkButtons 
+      HorizontalAlignment="Right"
+      Ok="{Binding OkCommand}"
+      Cancel="{Binding CancelCommand}"
+      />
+
+    </DockPanel>
+  </Grid>
+</Window>
