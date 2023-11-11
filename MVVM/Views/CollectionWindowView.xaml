@@ -11,6 +11,7 @@
         Height="750" 
         Width="800"
         WindowStartupLocation="CenterOwner" Topmost="True"
+        Closing="Window_Closing"
         >
   <Window.Resources>
     <ResourceDictionary>

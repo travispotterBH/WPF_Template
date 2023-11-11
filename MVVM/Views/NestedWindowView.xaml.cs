@@ -69,5 +69,11 @@ namespace WPF_Template.Views
         }
 
         /***************************************************/
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            var parentViewModel = ((NestedWindowViewModel)this.DataContext).ParentViewModel as MainWindowViewModel;
+            parentViewModel.NestedWindowViewModel = (NestedWindowViewModel)this.DataContext;
+
+        }
     }
 }

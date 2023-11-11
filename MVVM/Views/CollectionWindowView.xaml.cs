@@ -38,7 +38,7 @@ namespace WPF_Template.Views
         public CollectionsWindowView(CollectionsWindowViewModel collectionsWindowViewModel)
         {
             InitializeComponent();
-            this.DataContext = m_CollectionsWindowViewModel = collectionsWindowViewModel; 
+            this.DataContext = m_CollectionsWindowViewModel = collectionsWindowViewModel;
             InitializeActions();
         }
 
@@ -58,5 +58,11 @@ namespace WPF_Template.Views
         }
 
         /***************************************************/
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            var parentViewModel = ((CollectionsWindowViewModel)this.DataContext).ParentViewModel as MainWindowViewModel;
+            parentViewModel.CollectionsWindowViewModel = (CollectionsWindowViewModel)this.DataContext;
+
+        }
     }
 }

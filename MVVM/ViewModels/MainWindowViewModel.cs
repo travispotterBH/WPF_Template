@@ -48,6 +48,15 @@ namespace WPF_Template.ViewModels
             set { m_CollectionsWindowViewModel = value; }
         }
 
+        private ContextMenuWindowViewModel m_ContextMenuWindowViewModel;
+
+        public ContextMenuWindowViewModel ContextMenuWindowViewModel
+        {
+            get { return m_ContextMenuWindowViewModel; }
+            set { m_ContextMenuWindowViewModel = value; }
+        }
+
+        /***************************************************/
 
         /***************************************************/
         /****              Actions                      ****/
@@ -60,6 +69,7 @@ namespace WPF_Template.ViewModels
 
         public ICommand NestedWindowCommand { get; set; }
         public ICommand CollectionsWindowCommand { get; set; }
+        public ICommand ContextMenuWindowCommand { get; set; }
         public ICommand PopUpWindowCommand { get; set; }
         public ICommand OpenFileCommand { get; set; }
         public ICommand SaveFileCommand { get; set; }
@@ -78,12 +88,13 @@ namespace WPF_Template.ViewModels
             CancelCommand = new RouteCommands(CancelCommandAction);
             OkCommand = new RouteCommands(OkCommandAction);
             NestedWindowCommand = new RouteCommands(ShowNestedWindow);
+            CollectionsWindowCommand = new RouteCommands(ShowCollectionsWindow);
+            ContextMenuWindowCommand = new RouteCommands(ShowContextMenuWindow);
             PopUpWindowCommand = new RouteCommands(ShowPopUpWindow);
             OpenFileCommand = new RouteCommands(OpenFile);
             SaveFileCommand = new RouteCommands(SaveFile);
             ImportCommand = new RouteCommands(ImportAction);
             ExportCommand = new RouteCommands(ExportAction);
-            CollectionsWindowCommand = new RouteCommands(ShowCollectionsWindow);
 
             Memento = this.FromViewModel();
         }
@@ -112,6 +123,15 @@ namespace WPF_Template.ViewModels
             NestedWindowService.ShowWindowAsDialog(collectionsWindow, OwnerWindow, this);
             m_MainWindowModel.CollectionsWindowModel = m_CollectionsWindowViewModel.FromViewModel();
         }
+
+        private void ShowContextMenuWindow()
+        {
+            var contextMenuWindowViewModel = m_MainWindowModel.ContextMenuWindowModel?.ToViewModel() ?? new ContextMenuWindowViewModel(new ContextMenuWindowModel());
+            var contextMenuWindow = new ContextMenuWindowView(contextMenuWindowViewModel);
+            NestedWindowService.ShowWindowAsDialog(contextMenuWindow, OwnerWindow, this);
+            m_MainWindowModel.ContextMenuWindowModel = contextMenuWindowViewModel.FromViewModel();
+        }
+
         private void OpenFile()
         {
             var value = FileDialogService.OpenFileDialog("Text Files (*.txt)|*.txt|All Files (*.*)|*.*");

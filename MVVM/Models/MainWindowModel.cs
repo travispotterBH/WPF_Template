@@ -11,5 +11,6 @@ namespace WPF_Template.Models
     {
         public NestedWindowModel NestedWindowModel { get; set; } = null;
         public CollectionsWindowModel CollectionsWindowModel { get; set; } = null;
+        public ContextMenuWindowModel ContextMenuWindowModel { get; set; } = null;
     }
 }

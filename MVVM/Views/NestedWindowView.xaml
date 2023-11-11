@@ -12,6 +12,7 @@
         Height="300" 
         Width="500"
         WindowStartupLocation="CenterOwner" Topmost="True"
+        Closing="Window_Closing"
         >
   <Grid>
     <Grid.ColumnDefinitions>
