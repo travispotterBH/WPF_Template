@@ -121,6 +121,22 @@
         </Button>
 
       </DockPanel>
+
+      <DockPanel>
+        <TextBlock
+          VerticalAlignment="Center"
+          >Context Menu Window</TextBlock>
+
+        <Button
+          HorizontalAlignment="Right"
+          Height="20"
+          Width="100"
+          Command="{Binding ContextMenuWindowCommand}"
+          >
+          Open
+        </Button>
+
+      </DockPanel>
     </StackPanel>
     <DockPanel
        Grid.Column="0" 

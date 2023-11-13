@@ -1,0 +1,63 @@
+﻿<Window x:Class="WPF_Template.Views.ContextMenuWindowView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_Template.Views"
+        xmlns:t="clr-namespace:WPF_Template.UserControls" 
+        xmlns:viewmodels="clr-namespace:WPF_Template.ViewModels" 
+        d:DataContext="{d:DesignInstance Type=viewmodels:ContextMenuWindowViewModel}"
+        mc:Ignorable="d"
+        Title="ContextMenuWindowView" 
+        Height="300" 
+        Width="500"
+        WindowStartupLocation="CenterOwner" Topmost="True"
+        Closing="Window_Closing"
+        >
+  <Grid
+    ShowGridLines="True"
+    >
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="*"/>
+    </Grid.ColumnDefinitions>
+
+    <Grid.RowDefinitions>
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
+
+    <TextBlock
+      Grid.Row="0"
+      Text="{Binding Text_1}">
+      <TextBlock.ContextMenu>
+        <ContextMenu >
+          <MenuItem Header="Copy" Click="MenuCopyItem_Click"
+                      Tag="{Binding PlacementTarget.Text, RelativeSource={RelativeSource AncestorType=ContextMenu}}"/>
+        </ContextMenu>
+      </TextBlock.ContextMenu>
+    </TextBlock>
+
+    <TextBlock
+      Grid.Row="1"
+      Text="{Binding Text_2}">
+      <TextBlock.ContextMenu>
+        <ContextMenu >
+          <MenuItem Header="Copy" Click="MenuCopyItem_Click"
+                      Tag="{Binding PlacementTarget.Text, RelativeSource={RelativeSource AncestorType=ContextMenu}}"/>
+        </ContextMenu>
+      </TextBlock.ContextMenu>
+    </TextBlock>
+
+    <TextBlock
+      Grid.Row="2"
+      Text="{Binding Text_3}">
+      <TextBlock.ContextMenu>
+        <ContextMenu >
+          <MenuItem Header="Copy" Click="MenuCopyItem_Click"
+                      Tag="{Binding PlacementTarget.Text, RelativeSource={RelativeSource AncestorType=ContextMenu}}"/>
+        </ContextMenu>
+      </TextBlock.ContextMenu>
+    </TextBlock>
+  </Grid>
+</Window>

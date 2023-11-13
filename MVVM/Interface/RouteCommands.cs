@@ -11,7 +11,8 @@ namespace WPF_Template.Interface
 
         private readonly Action<object> m_execute;
 
-        private readonly Action m_Action;
+        private readonly Action<object> m_ActionWithParameter;
+        private readonly Action m_ActionWithoutParameter;
 
         private readonly Predicate<object> m_canExecute;
 
@@ -32,9 +33,12 @@ namespace WPF_Template.Interface
 
         public RouteCommands(Action action)
         {
-            m_Action = action;
+            m_ActionWithoutParameter = action;
         }
-
+        public RouteCommands(Action<object> action)
+        {
+            m_ActionWithParameter = action;
+        }
         /***************************************************/
 
         public event EventHandler CanExecuteChanged
@@ -54,10 +58,12 @@ namespace WPF_Template.Interface
 
         public void Execute(object parameter)
         {
-            if (m_Action == null)
+            if (m_ActionWithoutParameter == null && m_ActionWithParameter == null)
                 m_execute.Invoke(parameter);
+            else if (m_ActionWithoutParameter != null)
+                m_ActionWithoutParameter();
             else
-                m_Action();
+                m_ActionWithParameter(parameter);
         }
 
         /***************************************************/
