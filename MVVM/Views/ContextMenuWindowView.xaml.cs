@@ -59,10 +59,8 @@ namespace WPF_Template.Views
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            var parentViewModel = ((ContextMenuWindowViewModel)this.DataContext).ParentViewModel as MainWindowViewModel;
-            parentViewModel.ContextMenuWindowViewModel = (ContextMenuWindowViewModel)this.DataContext;
-
         }
+
         private void CopyText(object parameter)
         {
             if (parameter is string textToCopy)

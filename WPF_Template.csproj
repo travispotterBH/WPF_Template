@@ -82,12 +82,9 @@
     <Compile Include="Mocks\Mocks.cs" />
     <Compile Include="MVVM\Models\Employee.cs" />
     <Compile Include="MVVM\Models\CollectionsWindowModel.cs" />
-    <Compile Include="MVVM\Models\ContextMenuWindowModel.cs" />
     <Compile Include="MVVM\Models\NestedWindowModel.cs" />
     <Compile Include="MVVM\Models\MainWindowModel.cs" />
     <Compile Include="MVVM\ViewModels\ContextMenuWindowViewModel.cs" />
-    <Compile Include="MVVM\ViewModels\Convert\FromViewModel\ContextMenuWindowModel.cs" />
-    <Compile Include="MVVM\ViewModels\Convert\ToViewModel\ContextMenuWindowModel.cs" />
     <Compile Include="MVVM\Views\ContextMenuWindowView.xaml.cs">
       <DependentUpon>ContextMenuWindowView.xaml</DependentUpon>
     </Compile>

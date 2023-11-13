@@ -48,14 +48,6 @@ namespace WPF_Template.ViewModels
             set { m_CollectionsWindowViewModel = value; }
         }
 
-        private ContextMenuWindowViewModel m_ContextMenuWindowViewModel;
-
-        public ContextMenuWindowViewModel ContextMenuWindowViewModel
-        {
-            get { return m_ContextMenuWindowViewModel; }
-            set { m_ContextMenuWindowViewModel = value; }
-        }
-
         /***************************************************/
 
         /***************************************************/
@@ -126,10 +118,9 @@ namespace WPF_Template.ViewModels
 
         private void ShowContextMenuWindow()
         {
-            var contextMenuWindowViewModel = m_MainWindowModel.ContextMenuWindowModel?.ToViewModel() ?? new ContextMenuWindowViewModel(new ContextMenuWindowModel());
+            var contextMenuWindowViewModel = new ContextMenuWindowViewModel();
             var contextMenuWindow = new ContextMenuWindowView(contextMenuWindowViewModel);
             NestedWindowService.ShowWindowAsDialog(contextMenuWindow, OwnerWindow, this);
-            m_MainWindowModel.ContextMenuWindowModel = contextMenuWindowViewModel.FromViewModel();
         }
 
         private void OpenFile()

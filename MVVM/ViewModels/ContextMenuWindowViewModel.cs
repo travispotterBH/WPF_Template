@@ -59,7 +59,7 @@ namespace WPF_Template.ViewModels
         /****                Constructor                ****/
         /***************************************************/
 
-        public ContextMenuWindowViewModel(ContextMenuWindowModel contextMenuWindowModel)
+        public ContextMenuWindowViewModel()
         {
             SetupBaseCommands();
             Text_1 = "Menu 1";
