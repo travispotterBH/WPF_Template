@@ -14,6 +14,15 @@
         WindowStartupLocation="CenterOwner" Topmost="True"
         Closing="Window_Closing"
         >
+  
+  <Window.Resources>
+    <!--Based on this answer: https://stackoverflow.com/questions/6857780/how-to-hide-wpf-datagrid-columns-depending-on-a-property/6858917-->
+    <MenuItem x:Key="CopyMenuItem" 
+              Header="Copy"
+              Command="{Binding CopyCommand}"
+              CommandParameter="{Binding Text, Source={x:Reference TextBlock1}}" />
+  </Window.Resources>
+  
   <Grid
     ShowGridLines="True"
     >
@@ -28,12 +37,12 @@
     </Grid.RowDefinitions>
 
     <TextBlock
+      Name="TextBlock1"
       Grid.Row="0"
       Text="{Binding Text_1}">
       <TextBlock.ContextMenu>
         <ContextMenu >
-          <MenuItem Header="Copy" Click="MenuCopyItem_Click"
-                      Tag="{Binding PlacementTarget.Text, RelativeSource={RelativeSource AncestorType=ContextMenu}}"/>
+          <StaticResource ResourceKey="CopyMenuItem" />
         </ContextMenu>
       </TextBlock.ContextMenu>
     </TextBlock>

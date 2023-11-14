@@ -1,15 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Windows;
 using System.Windows.Input;
 using WPF_Template.Interface;
-using WPF_Template.Models;
-using System.Windows;
-using WPF_Template.Services;
-using System.Windows.Controls;
-using System.Collections.ObjectModel;
 
 namespace WPF_Template.ViewModels
 {
@@ -55,6 +46,8 @@ namespace WPF_Template.ViewModels
         /****              Commands                     ****/
         /***************************************************/
 
+        public ICommand CopyCommand { get; set; }
+
         /***************************************************/
         /****                Constructor                ****/
         /***************************************************/
@@ -65,6 +58,7 @@ namespace WPF_Template.ViewModels
             Text_1 = "Menu 1";
             Text_2 = "Menu 2";
             Text_3 = "Menu 3";
+            CopyCommand = new RouteCommands(Copy, o => true);
         }
 
         /***************************************************/
@@ -80,6 +74,13 @@ namespace WPF_Template.ViewModels
         internal override void CancelCommandAction()
         {
             ExecutionFinishedAction();
+        }
+
+        /***************************************************/
+
+        private void Copy(object parameter)
+        {
+            MessageBox.Show(parameter.ToString());
         }
 
         /***************************************************/
